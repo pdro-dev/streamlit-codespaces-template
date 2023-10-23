@@ -10,8 +10,6 @@ import io
 
 
 
-
-
 # Adjust the width of the Streamlit page
 st.set_page_config(
     page_title="Data Visualization App",
@@ -119,5 +117,7 @@ elif page == "Lista Imóveis (db_gsheet)":
 
     if __name__ == "__main__":
         main()
+
+
 
 
