@@ -27,7 +27,7 @@
     // Use 'postAttachCommand' to run commands after a tool has attached to the container.
     // Start the app.
     "postAttachCommand": {
-        "server": "streamlit run app.py --server.address 0.0.0.0 --server.port 8501"
+        "server": "streamlit run app.py --server.enableCORS false --server.enableXsrfProtection false"
     },
     "portsAttributes": {
         "8501": {

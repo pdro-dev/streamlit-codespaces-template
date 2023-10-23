@@ -33,7 +33,7 @@ if page == "Calendário":
 
         st.markdown(
             f"""
-            [Download the PDF file]({pdf_url})
+            [https://www.caixa.gov.br/Downloads/habitacao-documentos-gerais/calendario-leiloes-imoveis-caixa.pdf]({pdf_url})
             """,
             unsafe_allow_html=True,
         )
