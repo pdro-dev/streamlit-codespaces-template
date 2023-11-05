@@ -6,7 +6,9 @@ import pygsheets
 import os
 import fitz  # PyMuPDF
 from PIL import Image
-import io
+
+from googleapiclient.discovery import build  # Import the build function
+from google.oauth2 import service_account
 
 
 
@@ -84,6 +86,7 @@ elif page == "Tabela de Imóveis":
     components.html(pyg_html, height=1000, scrolling=True)
 
 elif page == "Lista Imóveis (db_gsheet)":
+    
     def load_data():
         # Authorization
         gc = pygsheets.authorize(service_file='db-gsheet-streamlit-919212249958.json')
@@ -92,6 +95,9 @@ elif page == "Lista Imóveis (db_gsheet)":
         sh = gc.open('Planilha Automatiza de Imóveis de Leilão - NèstiQ')
         wks = sh.sheet1
 
+        # Update value in merged cell B7:C7 to "São Paulo"
+        wks.update_value('B7', 'Distrito Federal')
+       
         # Get the data as a DataFrame
         data = wks.get_as_df()
 
@@ -112,8 +118,12 @@ elif page == "Lista Imóveis (db_gsheet)":
         st.write("Loading data from Google Sheet...")
         data = load_data()
 
+        # refresh button to reload data
+        if st.button("Refresh Data"):
+            data = load_data()
+
         st.write("Displaying the DataFrame:")
-        st.dataframe(data)
+        st.write(data)
 
     if __name__ == "__main__":
         main()
